@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<!--
+  LONGITUDE property microsite — 226 Norfolk Ave, Park City, UT 84060
+  spec version 1.1.0
+  submarket: Old Town Park City
+  jurisdiction: Park City municipal (Summit County)
+  variant: buyer-facing
+  design: matches live Viridian at Canyons Village build (dark mountain aesthetic, modal popups, 6 sections)
+  build date: 2026-04-24
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>226 Norfolk Ave · Upper Old Town · Park City, Utah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rust:#C05A3E;
+    --rust-bright:#D66545;
+    --rust-glow:#E07B5F;
+    --rust-deep:#8B3320;
+    --cream:#FDF8ED;
+    --cream-dim:#E8DFC7;
+    --ink:#0A0E14;
+    --ink-deep:#05080C;
+    --charcoal:#12171F;
+    --slate:#1C2330;
+    --slate-light:#2A3342;
+    --mist:#8A9AAE;
+    --mist-soft:#B8C4D4;
+    --gold:#C9A76B;
+    --line:rgba(201,167,107,0.15);
+    --line-bright:rgba(201,167,107,0.3);
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);background:var(--ink-deep);color:var(--cream);
+    line-height:1.7;-webkit-font-smoothing:antialiased;font-weight:300;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  }
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-0.5px;line-height:1.15;color:var(--cream)}
+  .eyebrow{
+    font-family:var(--sans);font-size:10px;letter-spacing:4px;text-transform:uppercase;
+    color:var(--rust-glow);font-weight:600;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ═════════ MOUNTAIN BACKGROUND ═════════ */
+  .mountain-bg{
+    position:fixed;top:0;left:0;width:100%;height:100vh;z-index:-1;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(192,90,62,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 120% 80% at 50% 0%, rgba(10,14,20,0.4) 0%, transparent 70%),
+      linear-gradient(180deg,#0A0E14 0%,#0D1319 40%,#0A0E14 100%);
+  }
+  .mountain-bg svg{
+    position:absolute;bottom:0;left:0;width:100%;height:100%;
+    opacity:0.88;
+  }
+  .stars{
+    position:fixed;top:0;left:0;width:100%;height:100vh;z-index:-1;
+    pointer-events:none;opacity:0.55;
+  }
+  .stars::before, .stars::after{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(1.2px 1.2px at 20% 15%, #fff, transparent),
+      radial-gradient(1px 1px at 75% 10%, #fff, transparent),
+      radial-gradient(1px 1px at 40% 25%, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1.2px 1.2px at 85% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 15% 40%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 55% 45%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 50%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1.2px 1.2px at 30% 60%, #fff, transparent),
+      radial-gradient(1px 1px at 70% 70%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 10% 22%, rgba(201,167,107,0.6), transparent),
+      radial-gradient(1px 1px at 60% 12%, rgba(201,167,107,0.5), transparent),
+      radial-gradient(1px 1px at 82% 65%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 25% 80%, rgba(255,255,255,0.4), transparent);
+    background-size:100% 100%;
+  }
+
+  /* ═════════ HEADER ═════════ */
+  header{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:22px 44px;
+    background:linear-gradient(180deg, rgba(5,8,12,0.92) 0%, rgba(5,8,12,0.55) 80%, transparent 100%);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  header .logo{
+    height:38px;width:auto;
+    filter:brightness(0) invert(1);
+    opacity:0.94;
+  }
+  .header-right{
+    font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--mist);font-weight:500;
+  }
+  .header-right span{color:var(--rust-glow)}
+  @media (max-width:640px){
+    header{padding:18px 22px}
+    header .logo{height:30px}
+    .header-right{display:none}
+  }
+
+  /* ═════════ HERO ═════════ */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    padding:130px 40px 90px;text-align:center;position:relative;
+  }
+  .hero-eyebrow{margin-bottom:36px}
+  .hero h1{
+    font-family:var(--serif);
+    font-size:clamp(46px,8vw,104px);font-weight:400;
+    letter-spacing:-1.5px;line-height:1.08;
+    max-width:980px;margin:0 auto 36px;
+    text-shadow:0 0 90px rgba(192,90,62,0.22);
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:400;
+    color:var(--rust-glow);
+    font-family:var(--serif);
+  }
+  .hero .address-line{
+    font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);font-weight:400;
+    color:var(--cream-dim);letter-spacing:0.3px;margin-bottom:24px;font-style:italic;
+  }
+  .hero-specs{
+    font-family:var(--sans);font-size:12px;font-weight:500;
+    letter-spacing:2.2px;text-transform:uppercase;
+    color:var(--mist-soft);margin-bottom:48px;
+  }
+  .hero-specs .dot{color:var(--rust-glow);margin:0 10px;opacity:0.7}
+  .hero-tagline{
+    font-family:var(--serif);font-size:clamp(17px,1.8vw,20px);font-weight:400;
+    font-style:italic;color:var(--mist-soft);max-width:680px;margin:0 auto 60px;
+    line-height:1.55;
+  }
+  .hero-cta{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:3px;text-transform:uppercase;
+    color:var(--cream);padding:16px 36px;
+    border:1px solid var(--line-bright);
+    background:rgba(192,90,62,0.06);
+    transition:all 0.3s ease;cursor:pointer;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .hero-cta:hover{
+    background:rgba(192,90,62,0.15);
+    border-color:var(--rust-glow);
+    color:var(--rust-glow);
+  }
+  .hero-cta .arrow{transition:transform 0.3s}
+  .hero-cta:hover .arrow{transform:translateY(3px)}
+
+  /* ═════════ SECTIONS GRID ═════════ */
+  .sections-wrap{
+    padding:100px 40px 120px;
+    max-width:1280px;margin:0 auto;
+  }
+  .sections-lead{
+    text-align:center;margin-bottom:72px;
+  }
+  .sections-lead .eyebrow{margin-bottom:22px}
+  .sections-lead h2{
+    font-family:var(--serif);font-size:clamp(38px,5vw,60px);font-weight:400;
+    letter-spacing:-1px;max-width:820px;margin:0 auto 22px;line-height:1.1;
+  }
+  .sections-lead h2 em{font-style:italic;color:var(--rust-glow)}
+  .sections-lead p{
+    font-family:var(--serif);font-style:italic;font-size:19px;
+    color:var(--mist-soft);max-width:620px;margin:0 auto;font-weight:400;
+  }
+  .nav-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:22px;
+    max-width:1200px;margin:0 auto;
+  }
+  .nav-card{
+    background:linear-gradient(155deg, var(--slate) 0%, var(--charcoal) 65%, var(--ink) 100%);
+    border:1px solid var(--line);
+    padding:44px 40px 38px;
+    cursor:pointer;
+    transition:all 0.4s cubic-bezier(0.25, 0.4, 0.25, 1);
+    position:relative;
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    min-height:330px;
+  }
+  .nav-card::before{
+    content:'';position:absolute;
+    top:-50%;left:-50%;width:200%;height:200%;
+    background:radial-gradient(circle, rgba(224,123,95,0.14) 0%, transparent 55%);
+    opacity:0;transition:opacity 0.4s;
+  }
+  .nav-card:hover{
+    border-color:var(--line-bright);
+    transform:translateY(-4px);
+    box-shadow:0 24px 60px rgba(0,0,0,0.4), 0 0 40px rgba(192,90,62,0.1);
+  }
+  .nav-card:hover::before{opacity:1}
+  .nav-numeral{
+    font-family:var(--serif);font-style:italic;font-size:30px;font-weight:400;
+    color:var(--gold);margin-bottom:28px;letter-spacing:0.5px;
+    position:relative;z-index:1;
+  }
+  .nav-card h3{
+    font-family:var(--serif);font-size:26px;font-weight:500;
+    color:var(--cream);line-height:1.2;margin-bottom:18px;
+    position:relative;z-index:1;
+  }
+  .nav-card p{
+    font-family:var(--sans);font-size:14.5px;font-weight:300;
+    color:var(--mist-soft);line-height:1.65;
+    flex:1;margin-bottom:24px;
+    position:relative;z-index:1;
+  }
+  .nav-card .cta{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--rust-glow);
+    display:inline-flex;align-items:center;gap:9px;
+    transition:gap 0.3s;
+    position:relative;z-index:1;
+  }
+  .nav-card:hover .cta{gap:15px}
+  .nav-card .cta .arrow{transition:transform 0.3s}
+  .nav-card:hover .cta .arrow{transform:translateX(4px)}
+
+  /* ═════════ MODAL ═════════ */
+  .modal-backdrop{
+    position:fixed;inset:0;z-index:1000;
+    background:rgba(5,8,12,0.82);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    opacity:0;pointer-events:none;
+    transition:opacity 0.32s ease;
+    overflow-y:auto;padding:60px 22px;
+  }
+  .modal-backdrop.open{opacity:1;pointer-events:auto}
+  .modal{
+    background:linear-gradient(180deg, var(--charcoal) 0%, var(--ink) 100%);
+    border:1px solid var(--line-bright);
+    max-width:900px;margin:0 auto;
+    padding:60px 70px 70px;
+    position:relative;
+    transform:scale(0.96) translateY(14px);
+    transition:transform 0.38s cubic-bezier(0.25, 0.4, 0.25, 1);
+    box-shadow:0 40px 120px rgba(0,0,0,0.65), 0 0 80px rgba(192,90,62,0.08);
+  }
+  .modal-backdrop.open .modal{transform:scale(1) translateY(0)}
+  .modal-close{
+    position:absolute;top:22px;right:22px;
+    background:transparent;border:1px solid var(--line);
+    color:var(--mist);width:44px;height:44px;border-radius:50%;
+    cursor:pointer;font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+    transition:all 0.3s;
+  }
+  .modal-close:hover{
+    border-color:var(--rust-glow);color:var(--rust-glow);
+    background:rgba(192,90,62,0.08);
+  }
+  .modal-header{margin-bottom:42px;border-bottom:1px solid var(--line);padding-bottom:30px}
+  .modal-header .eyebrow{margin-bottom:18px}
+  .modal-header h2{
+    font-family:var(--serif);font-size:clamp(32px,4.5vw,46px);font-weight:400;
+    letter-spacing:-0.8px;line-height:1.1;margin-bottom:16px;
+  }
+  .modal-header h2 em{font-style:italic;color:var(--rust-glow)}
+  .modal-header .lede{
+    font-family:var(--serif);font-style:italic;font-size:19px;font-weight:400;
+    color:var(--mist-soft);line-height:1.55;max-width:72ch;
+  }
+  .modal-body{font-family:var(--sans)}
+  .modal-body p{
+    font-size:15.5px;font-weight:300;line-height:1.82;
+    color:var(--cream-dim);margin-bottom:22px;max-width:72ch;
+  }
+  .modal-body p strong{color:var(--cream);font-weight:500}
+  .modal-body h3{
+    font-family:var(--serif);font-size:26px;font-weight:500;
+    color:var(--cream);margin:44px 0 16px;letter-spacing:-0.3px;
+  }
+  .modal-body h3 em{font-style:italic;color:var(--rust-glow)}
+
+  /* Pull quote */
+  .pullquote{
+    background:linear-gradient(135deg, rgba(192,90,62,0.13) 0%, rgba(139,51,32,0.04) 100%);
+    border-left:2px solid var(--rust);
+    padding:34px 38px 34px 44px;
+    margin:38px 0;position:relative;
+  }
+  .pullquote::before{
+    content:'"';
+    position:absolute;top:-14px;left:14px;
+    font-family:var(--serif);font-size:90px;color:var(--rust);
+    opacity:0.45;line-height:1;font-weight:700;
+  }
+  .pullquote p{
+    font-family:var(--serif);font-style:italic;font-size:22px;font-weight:400;
+    color:var(--cream);line-height:1.45;margin:0;max-width:none;
+  }
+
+  /* Feature cards inside modals */
+  .feature-list{margin:28px 0 36px}
+  .feature-item{
+    background:rgba(42,51,66,0.4);
+    border:1px solid var(--line);
+    border-left:2px solid var(--rust);
+    padding:24px 28px;
+    margin-bottom:14px;
+    transition:all 0.3s;
+  }
+  .feature-item:hover{background:rgba(42,51,66,0.6);border-color:var(--line-bright)}
+  .feature-head{
+    display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+    margin-bottom:10px;flex-wrap:wrap;
+  }
+  .feature-head .title{
+    font-family:var(--serif);font-size:19px;font-weight:600;
+    color:var(--cream);letter-spacing:-0.2px;
+  }
+  .feature-head .tag{
+    font-family:var(--sans);font-size:9.5px;font-weight:600;
+    letter-spacing:2.2px;text-transform:uppercase;
+    color:var(--rust-glow);
+    border:1px solid var(--line-bright);
+    padding:4px 10px;white-space:nowrap;
+  }
+  .feature-head .tag.open{color:var(--gold);border-color:rgba(201,167,107,0.35)}
+  .feature-head .tag.under{background:rgba(192,90,62,0.15);color:var(--rust-bright)}
+  .feature-item p{
+    font-size:14.5px;color:var(--cream-dim);margin:0;line-height:1.7;
+  }
+
+  /* Stat block */
+  .stat-block{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:24px;
+    margin:40px 0;padding:44px 36px;
+    background:linear-gradient(135deg, var(--slate) 0%, var(--charcoal) 100%);
+    border:1px solid var(--line);
+    text-align:center;
+  }
+  .stat{padding:0 10px}
+  .stat .num{
+    font-family:var(--serif);font-size:44px;font-weight:500;
+    color:var(--rust-glow);line-height:1;display:block;margin-bottom:10px;
+    text-shadow:0 0 30px rgba(224,123,95,0.4);letter-spacing:-1px;
+  }
+  .stat .label{
+    font-family:var(--sans);font-size:10.5px;font-weight:500;
+    letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--mist-soft);line-height:1.45;
+  }
+
+  /* Timeline */
+  .timeline{margin:28px 0 36px}
+  .timeline-row{
+    display:grid;grid-template-columns:170px 1fr;gap:28px;
+    padding:22px 0;border-top:1px solid var(--line);
+  }
+  .timeline-row:last-child{border-bottom:1px solid var(--line)}
+  .timeline-period{
+    font-family:var(--serif);font-style:italic;font-size:20px;font-weight:500;
+    color:var(--rust-glow);
+  }
+  .timeline-body{font-size:14.5px;color:var(--cream-dim);line-height:1.7}
+  .timeline-body strong{color:var(--cream);font-weight:500}
+  @media (max-width:680px){
+    .timeline-row{grid-template-columns:1fr;gap:6px}
+    .timeline-period{font-size:17px}
+  }
+
+  /* Services pillars */
+  .pillars{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;
+    margin:32px 0 28px;
+  }
+  .pillar{
+    background:linear-gradient(155deg, rgba(192,90,62,0.08), rgba(139,51,32,0.02));
+    border:1px solid var(--line);
+    border-top:2px solid var(--rust);
+    padding:28px 24px;
+  }
+  .pillar h4{
+    font-family:var(--sans);font-size:10px;font-weight:600;
+    letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--rust-glow);margin-bottom:14px;
+  }
+  .pillar p{
+    font-size:14px;color:var(--cream-dim);margin:0;line-height:1.65;
+  }
+
+  /* Olympic callout */
+  .comp-callout{
+    background:linear-gradient(135deg, rgba(201,167,107,0.08), rgba(192,90,62,0.05));
+    border:1px solid var(--line-bright);
+    padding:32px 34px;margin:32px 0;
+  }
+  .comp-callout h4{
+    font-family:var(--sans);font-size:10px;font-weight:600;
+    letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold);margin-bottom:14px;
+  }
+  .comp-callout p{font-size:15px;margin-bottom:14px}
+  .comp-callout p:last-child{margin-bottom:0}
+
+  /* ═════════ FOOTER ═════════ */
+  footer{
+    padding:70px 40px 48px;
+    background:var(--ink-deep);
+    border-top:1px solid var(--line);
+    text-align:center;
+    position:relative;
+  }
+  footer .logo{
+    height:42px;width:auto;
+    filter:brightness(0) invert(1);
+    opacity:0.88;
+    margin:0 auto 26px;
+  }
+  footer .contact{
+    font-family:var(--serif);font-size:18px;font-style:italic;
+    color:var(--cream-dim);margin-bottom:4px;
+  }
+  footer .contact strong{
+    color:var(--cream);font-weight:500;font-style:normal;
+    font-family:var(--sans);letter-spacing:0.4px;
+  }
+  footer .role{
+    font-family:var(--sans);font-size:11px;font-weight:500;
+    letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--mist);margin-bottom:40px;
+  }
+  footer .disclaimer{
+    font-family:var(--sans);font-size:11.5px;font-weight:300;line-height:1.7;
+    color:var(--mist);max-width:740px;margin:0 auto;
+    padding-top:32px;border-top:1px solid var(--line);
+    font-style:italic;
+  }
+
+  /* Responsive */
+  @media (max-width:760px){
+    .modal{padding:44px 28px 50px}
+    .modal-header{margin-bottom:30px;padding-bottom:22px}
+    .sections-wrap{padding:70px 22px 90px}
+    .hero{padding:110px 24px 70px}
+    .nav-card{padding:36px 30px 32px;min-height:auto}
+    .stat-block{padding:32px 22px}
+    .pullquote{padding:26px 26px 26px 32px}
+    .pullquote p{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== MOUNTAIN BACKGROUND ===== -->
+<div class="mountain-bg">
+  <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Far ridge -->
+    <path d="M0,820 L120,760 L240,780 L360,720 L480,740 L620,680 L760,710 L900,660 L1040,690 L1180,650 L1320,680 L1460,640 L1600,670 L1760,640 L1920,660 L1920,1080 L0,1080 Z"
+          fill="#151B26" opacity="0.7"/>
+    <!-- Mid ridge -->
+    <path d="M0,880 L140,820 L280,850 L420,790 L560,820 L700,770 L860,800 L1020,750 L1180,780 L1340,740 L1500,770 L1660,730 L1820,760 L1920,740 L1920,1080 L0,1080 Z"
+          fill="#1A2230" opacity="0.82"/>
+    <!-- Near ridge -->
+    <path d="M0,940 L100,900 L220,930 L360,880 L500,910 L640,870 L800,900 L960,860 L1120,895 L1280,855 L1440,890 L1600,860 L1760,885 L1920,870 L1920,1080 L0,1080 Z"
+          fill="#1F2938" opacity="0.92"/>
+    <!-- Closest ridge with moonlit snow caps -->
+    <path d="M0,1000 L80,970 L180,995 L300,955 L420,985 L550,950 L680,980 L820,945 L960,975 L1100,940 L1240,970 L1380,935 L1520,965 L1660,935 L1820,960 L1920,945 L1920,1080 L0,1080 Z"
+          fill="#252F40"/>
+    <!-- Snow highlights on closest ridge -->
+    <path d="M290,956 L302,963 L318,958 L305,970 M418,985 L440,980 L455,989 M548,952 L565,962 L580,955 M818,946 L832,954 L850,948 M956,976 L975,972 L990,982 M1098,942 L1112,950 L1130,945 M1378,936 L1395,946 L1415,940"
+          stroke="rgba(184,196,212,0.45)" stroke-width="1.2" fill="none"/>
+  </svg>
+</div>
+<div class="stars"></div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <img src="assets/logo.png" alt="Longitude" class="logo">
+  <div class="header-right">A Closer Look</div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="eyebrow hero-eyebrow">226 Norfolk Ave · Old Town · Park City</div>
+  <h1>A home above Main Street <em>that pays its own way home.</em></h1>
+  <div class="address-line">226 Norfolk Avenue &mdash; Upper Norfolk, Old Town Park City</div>
+  <div class="hero-specs">3 Bed <span class="dot">·</span> 4 Bath <span class="dot">·</span> 2,785 Sq Ft <span class="dot">·</span> Single Family</div>
+  <p class="hero-tagline">A ski-access home on Upper Norfolk Avenue, steps above Historic Main Street &mdash; the kind of address Old Town rarely surrenders, and rarely twice the same decade.</p>
+  <a class="hero-cta" href="#sections">Explore This Home <span class="arrow">↓</span></a>
+</section>
+
+<!-- ===== SECTIONS NAV ===== -->
+<section class="sections-wrap" id="sections">
+  <div class="sections-lead">
+    <div class="eyebrow">A Closer Look</div>
+    <h2>Six ways to get to know <em>this home.</em></h2>
+    <p>Everything below opens a full page. Read what draws you in &mdash; skip what doesn't. Take your time.</p>
+  </div>
+
+  <div class="nav-grid">
+    <div class="nav-card" data-target="story">
+      <div class="nav-numeral">i.</div>
+      <h3>The Story &amp; Your Life Here</h3>
+      <p>Why Upper Norfolk is one of the rarest positions in Park City &mdash; and what living at 226 Norfolk Avenue feels like, morning by morning, season by season.</p>
+      <span class="cta">Read the Story <span class="arrow">→</span></span>
+    </div>
+
+    <div class="nav-card" data-target="guests">
+      <div class="nav-numeral">ii.</div>
+      <h3>The Guests Who Love This Home</h3>
+      <p>The couples groups and multi-generational families who find this home, book it for a week, and come back with another family the next year.</p>
+      <span class="cta">Meet the Guests <span class="arrow">→</span></span>
+    </div>
+
+    <div class="nav-card" data-target="features">
+      <div class="nav-numeral">iii.</div>
+      <h3>How Incoming Amenities Grow Your Future Rental Potential</h3>
+      <p>Every confirmed project and amenity arriving in Old Town and around Park City &mdash; and what each one adds to the experience guests find at your door.</p>
+      <span class="cta">See What's Coming <span class="arrow">→</span></span>
+    </div>
+
+    <div class="nav-card" data-target="foundation">
+      <div class="nav-numeral">iv.</div>
+      <h3>Why This Investment Is Built to Last</h3>
+      <p>The regulations, the geography, and the historic-district protections that defend a licensed home on Upper Norfolk from unconstrained new competition.</p>
+      <span class="cta">See the Foundation <span class="arrow">→</span></span>
+    </div>
+
+    <div class="nav-card" data-target="longitude">
+      <div class="nav-numeral">v.</div>
+      <h3>The Longitude Difference</h3>
+      <p>We don't manage homes &mdash; we protect assets. The philosophy, the team, and the standards behind an ownership experience that keeps your home feeling untouched.</p>
+      <span class="cta">See How We Work <span class="arrow">→</span></span>
+    </div>
+
+    <div class="nav-card" data-target="olympics">
+      <div class="nav-numeral">vi.</div>
+      <h3>The 2034 Olympics &amp; The Window Ahead</h3>
+      <p>What the years leading into an Olympic Games do to a resort town &mdash; and why today's owner is the one who gets to enjoy it from inside.</p>
+      <span class="cta">See the Window <span class="arrow">→</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <img src="assets/logo.png" alt="Longitude" class="logo">
+  <div class="contact"><strong>Cameron Brockbank</strong></div>
+  <div class="role">Longitude Luxury Property Management · 928-606-9686</div>
+  <p class="disclaimer">This overview is compiled from publicly available sources and third-party data. Infrastructure timelines are subject to permitting, funding, and construction variables. Comparable market references are historical patterns from other resort markets, shared for context. This is not financial, legal, or tax advice. Consult qualified professionals before making investment decisions.</p>
+</footer>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+const content = {
+  story: {
+    eyebrow: "i. — The Story & Your Life Here",
+    title: "An address above Main Street <em>that rarely comes up.</em>",
+    lede: "Upper Norfolk is a small bench of homes above Historic Main Street — close enough to walk down for dinner, high enough to catch the mountain light at sunrise. Owning one is one of the quieter privileges in Park City.",
+    body: `
+      <p>From this doorstep, the morning starts at the top of Old Town and rolls down the hill toward breakfast on Main Street. Ski days begin with the ski-out toward the Town Lift corridor and end with a walk home from dinner. Summer mornings begin on the rooftop deck with coffee and the long view up the mountain. Not many Park City addresses let all of those sentences stay true on the same day. This one does.</p>
+
+      <div class="pullquote"><p>This is not an Old Town condo booking — it is a private house in the heart of the historic district, and the market prices it differently because the market can't reproduce it.</p></div>
+
+      <h3>The rhythm of the year <em>at this address.</em></h3>
+
+      <div class="timeline">
+        <div class="timeline-row">
+          <div class="timeline-period">Dec &mdash; March</div>
+          <div class="timeline-body"><strong>The ski season anchors the year.</strong> Christmas, New Year, MLK, Presidents Weekend, and Spring Break are the peak booking weeks. Park City Mountain is fully operational, the Town Lift runs, and the guest who chooses this home chooses it for the Old Town ski-out and the walk back from dinner.</div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-period">April &mdash; May</div>
+          <div class="timeline-body"><strong>Shoulder season, with programming.</strong> The Park City Wine Festival (semi-annual since 2025) holds a spring edition in April. Trails open. The first hiking and mountain-biking weekends arrive before the summer calendar begins.</div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-period">June &mdash; August</div>
+          <div class="timeline-body"><strong>Summer is a second peak.</strong> Park City Song Summit (August 7&ndash;9, 2026, 5th year), Concerts on the Slopes at Canyons Village, Park City Opera's third summer season, mountain biking on the Park City network, and Main Street dinners fill the calendar week to week. The rooftop hot tub and outdoor kitchen become the features the guest remembers.</div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-period">Sept &mdash; October</div>
+          <div class="timeline-body"><strong>The fall rebooks couples groups.</strong> Fall colors, the fall Wine Festival, Oktoberfest, and Main Street's restaurant rotation carry the corridor between summer events and the first snow. These are the months that separate homes with year-round potential from homes with year-round bookings.</div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-period">November</div>
+          <div class="timeline-body"><strong>Thanksgiving, pre-season, early snow.</strong> Pre-Thanksgiving weeks are repositioning weeks for ski-week guests. Thanksgiving itself is consistently full for multi-bedroom Old Town homes. By late November, the lifts begin spinning.</div>
+        </div>
+      </div>
+
+      <h3>What the corridor becomes <em>between now and 2034.</em></h3>
+
+      <p>Park City Mountain is a confirmed 2034 Olympic venue for halfpipe, slopestyle, and freestyle skiing &mdash; the terrain guests watch on television in 2034 is the terrain they ski from this doorstep in the years leading up to it. The Bobsled Express bus rapid transit line broke ground this spring with an Old Town terminus and begins service in 2028, putting Canyons Village and Kimball Junction a short, frequent ride away. Main Street itself is being reshaped around pedestrians, with Town Lift Plaza under new ownership and a Main Street-to-Deer Valley gondola under active study.</p>
+
+      <p>None of this is speculative. The Olympic venue assignments are final. The transit funding is secured. The Main Street redesign is in consultant study. The corridor is not preparing for a moment &mdash; it is preparing for a decade. An address like 226 Norfolk Avenue, already built and already inside that footprint, compounds through every one of those milestones.</p>
+    `
+  },
+
+  guests: {
+    eyebrow: "ii. — The Guests Who Love This Home",
+    title: "A home configured for <em>two or three couples traveling together.</em>",
+    lede: "Three en-suite bedrooms on separate levels, a wine cellar that opens to a rooftop deck with a hot tub and fire pit, an outdoor kitchen, Viking appliances, a primary suite with steam shower and private patio — this is a home configured for the guest that Old Town condos cannot serve.",
+    body: `
+      <p>The guest who books 226 Norfolk Avenue is not booking a condo. They are booking a private home that lets them gather around one kitchen, pour wine on one rooftop, and scatter into private rooms when the day ends. They want dinner on Main Street without driving. They want the ski run to start at the end of the block. They want the morning to belong to the mountain and the evening to belong to the walk home.</p>
+
+      <p>Specifically, they are <strong>two or three couples traveling together for five to ten nights</strong>, or <strong>a family of six</strong> who wants a grown-up base for a ski week on Main Street. Three en-suite bedrooms solve the &ldquo;whose turn for the good bathroom&rdquo; problem before it happens. Separate levels solve the &ldquo;everyone's awake by seven&rdquo; problem. The rooftop and the wine cellar make the home itself part of the trip.</p>
+
+      <div class="pullquote"><p>The rebook mechanism is simple. The couples group that spends Christmas week here returns with a second family for Presidents Weekend. The group that discovers the rooftop in July books two weeks in October for the Wine Festival.</p></div>
+
+      <h3>Why this guest <em>rebooks and brings friends.</em></h3>
+
+      <p>Old Town drives the attachment to Park City as a destination; this specific address drives the attachment to this specific home. Once a group has hosted a holiday meal around the dining-room fireplace, had a nightcap in the rooftop hot tub, and walked down to Main Street for dinner without a car, they do not switch to a condo on the next trip. They book again.</p>
+
+      <p>That is the pattern that turns one booking into a six-year calendar &mdash; and turns a well-managed home into a booked home across every season of that calendar.</p>
+
+      <h3>What this home offers <em>that the rental market can't replicate.</em></h3>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-head"><div class="title">Three en-suite bedrooms on separate levels</div></div>
+          <p>The primary suite with steam shower, double shower, jetted tub, his-and-her closets, and a private patio with a water feature opens to the lower level. Guest suite with en-suite bath. Upper bedroom suite. Three couples, three bathrooms, no compromise.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-head"><div class="title">Rooftop deck with hot tub, fire pit, outdoor television</div></div>
+          <p>The entertainment anchor of the home. Views few addresses in Park City can claim. The feature the guest photographs and remembers.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-head"><div class="title">Wine cellar, bar, and entry-level entertaining floor</div></div>
+          <p>Garage-door wall opens the bar entirely to the outdoors. Groups gather here, then flow to the rooftop. The home was designed for this sequence.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-head"><div class="title">Viking kitchen, three fireplaces, heated bathroom floors</div></div>
+          <p>A remodel completed in 2020 with the fit and finish of a new build. Mahogany floors and cabinetry, custom accent lighting, heated walkway and driveway, snow melt system. The home performs as well as it presents.</p>
+        </div>
+      </div>
+    `
+  },
+
+  features: {
+    eyebrow: "iii. — Incoming Amenities & Rental Growth",
+    title: "Every project arriving around this doorstep, <em>on a confirmed calendar.</em>",
+    lede: "The pipeline of infrastructure, amenities, and programming scheduled to land within walking distance of this address or inside the Park City corridor it sits in. Each one has a verified source and a verified timeline.",
+    body: `
+      <h3>Hyperlocal &mdash; <em>inside Old Town.</em></h3>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">Matthew Prince's Town Lift Plaza Rebuild</div>
+            <div class="tag under">Underway</div>
+          </div>
+          <p>Cloudflare CEO Matthew Prince acquired Town Lift Plaza in May 2025 &mdash; the commercial frontage at the base of the Town Lift, most of the garage parking, and the lift deck itself. His stated philosophy is below-market rents to attract quality retail, and he has publicly discussed replacing the Town Lift with a gondola linking Main Street directly to Park City Mountain. Every upgrade to this corridor raises the value of ski-access homes sitting above it. This is one of them.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">Main Street Redesign &mdash; Pedestrian-First</div>
+            <div class="tag">In Study</div>
+          </div>
+          <p>Park City's Kimley Horn consultant study is underway for a curbless, car-lite Main Street with one-way downhill traffic, wider sidewalks, and safer crossings. Parking is being reorganized into new garages at Swede Alley and North Marsac with regional park-and-ride lots. A quieter, more walkable Main Street raises the premium on homes within walking distance of it. The ones already inside that walk compound the benefit.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">Arc'teryx Flagship &mdash; 570 Main Street</div>
+            <div class="tag open">Open</div>
+          </div>
+          <p>The global outdoor brand opened its Park City flagship on December 13, 2025, next to Fletchers. Its arrival is part of a broader repositioning of Main Street's retail tier. The tenants Main Street attracted in 2019 are not the tenants Main Street attracts now.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">The Marquis &mdash; 1,200-Capacity Live Music Venue</div>
+            <div class="tag open">Open</div>
+          </div>
+          <p>427 Main Street. A 1,200-capacity concert venue running roughly 200 shows a year, opened December 2023. Park City now has year-round ticketed nightlife it did not have five seasons ago. Live music nights convert shoulder weekends into booked weekends.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">New City Park Community Center</div>
+            <div class="tag under">Underway</div>
+          </div>
+          <p>A 15,000-square-foot replacement for the aging 1980s community center. Groundbreaking occurred August 2025; completion targeted November 2026. Indoor community space, programming, and year-round family amenity inside Old Town's footprint &mdash; exactly what family-booking guests look for on bad-weather days.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">Old Town &mdash; Deer Valley Gondola Study</div>
+            <div class="tag">Feasibility</div>
+          </div>
+          <p>Park City awarded a $76,500 contract to SE Group in November 2025 to study two aerial alignments between Snow Park (Deer Valley) and Old Town &mdash; Main Street and Richardson Flat. Three gondola technologies. Six terminal sites. Even as a study, it signals the direction the corridor is trending.</p>
+        </div>
+      </div>
+
+      <h3>Regional &mdash; <em>inside Park City's corridor.</em></h3>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">Bobsled Express BRT &mdash; Old Town Terminus</div>
+            <div class="tag under">Underway</div>
+          </div>
+          <p>A $109M bus rapid transit corridor along SR-224 &mdash; seven miles, six stations, Olympic-scale capacity for 5,000 daily riders. Named in April 2026; construction began April 1, 2026; service begins 2028. The final station is the Old Town Transit Center. Peak frequency 10 minutes, off-peak 15. Guests booked into this home get frequent, fare-free access to Canyons Village and Kimball Junction without a car.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">Park City Mountain &mdash; Sunrise Gondola &amp; Skyway</div>
+            <div class="tag open">Open / Underway</div>
+          </div>
+          <p>Sunrise Gondola opened November 21, 2025 &mdash; a 10-passenger gondola replacing the old two-person lift, delivering skiers from Canyons Village base to Red Pine Lodge mid-mountain. The Canyons Village Skyway, a 10-passenger enclosed gondola replacing the Cabriolet, began construction March 30, 2026 with a 2026/27 target. Canyons Village parking is expanding from 653 to 1,840 spaces. The resort guests are visiting is materially different from the one they visited two seasons ago.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">Bonanza Park $120M Activation</div>
+            <div class="tag">Approved</div>
+          </div>
+          <p>Kearns Boulevard and Bonanza Drive. The City Council advanced the $120M plan to Planning Commission review on March 20, 2026 in a 4&ndash;1 vote. Arts pavilion, restaurant, village green, and programming targeted at 250 days a year. Construction target December 2027; grand opening projected winter 2029. A second year-round activity district inside Park City means a broader booking window.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">Utah Olympic Park &mdash; 2034 Venue</div>
+            <div class="tag">2034</div>
+          </div>
+          <p>3419 Olympic Parkway. Confirmed 2034 venue for ski jumping, bobsled, luge, skeleton, and Nordic combined. Year-round operations already include zip lines, bobsled rides, alpine slides, ropes courses, and an interactive Olympic museum. Two Olympic venues inside a ten-mile radius of this doorstep.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-head">
+            <div class="title">910 Ranch &amp; Regional Conservation</div>
+            <div class="tag open">Permanent</div>
+          </div>
+          <p>910 Ranch conservation &mdash; 8,588 acres, the largest in Summit County history &mdash; announced January 27, 2026 with a $40M Forest Legacy Program grant. Combined with the Clark Ranch easement and Park City's Open Space Portfolio, roughly 9,540 acres around Park City are now permanently protected. The view from this rooftop is a view with legal protection now.</p>
+        </div>
+      </div>
+    `
+  },
+
+  foundation: {
+    eyebrow: "iv. — Why This Investment Is Built to Last",
+    title: "A licensed home on Upper Norfolk sits inside <em>a fiercely protected set.</em>",
+    lede: "Rental revenue is not just a function of demand. It is a function of how fiercely supply is constrained against that demand. At 226 Norfolk, three forces work in the owner's favor at the same time.",
+    body: `
+      <h3>The regulatory layer</h3>
+      <p>Park City licenses every nightly rental individually &mdash; an administrative fee plus a per-bedroom fee, annual renewal, zone-restricted. Summit County has spent 2025 and 2026 building an enforcement apparatus that did not exist two years ago: Azora software detecting unlicensed listings, a dedicated STR enforcement officer hired in March 2025, a complaint hotline launched in January 2026, and a 2026 work plan for additional rules. <strong>Utah HB 256</strong> took effect May 7, 2025 &mdash; online platform listings are now admissible as evidence of illegal STR operation.</p>
+
+      <p>Every piece of that is protection for a licensed home on Norfolk Avenue. It raises the barrier for unlicensed operators trying to compete and draws a sharper line around the set of homes legally in the market.</p>
+
+      <h3>The structural layer</h3>
+      <p>Old Town cannot get meaningfully bigger. The historic district has protections that prevent the kind of density expansion a modern corridor can absorb. The street grid is fixed. The buildable lots are mostly built on. New homes on Upper Norfolk or Woodside happen one at a time, not in phases. That is not a temporary state &mdash; that is the category.</p>
+
+      <div class="stat-block">
+        <div class="stat">
+          <span class="num">~4,000</span>
+          <span class="label">Licensed nightly rentals in Park City &mdash; highest of any Utah municipality</span>
+        </div>
+        <div class="stat">
+          <span class="num">~9,540</span>
+          <span class="label">Acres of permanently protected open space around Park City</span>
+        </div>
+        <div class="stat">
+          <span class="num">HB 256</span>
+          <span class="label">Platform listings admissible as STR enforcement evidence since May 2025</span>
+        </div>
+      </div>
+
+      <div class="pullquote"><p>An owner on Upper Norfolk is not competing against a future supply surge. They are sitting inside a finite set that the regulation, the geography, and the market are all working to protect.</p></div>
+
+      <h3>What this means for <em>the owner of 226 Norfolk.</em></h3>
+      <p>Each unlicensed operator removed from the market strengthens the position of a compliant home. Each new conservation easement around Park City turns a potential future competitor into a permanent open-space neighbor. Each tightening of the historic-district code is another reason this specific home cannot be replicated down the street next year. The math of this address is that every year that passes makes it more scarce, not less.</p>
+    `
+  },
+
+  longitude: {
+    eyebrow: "v. — The Longitude Difference",
+    title: "We don't manage homes &mdash; <em>we protect assets.</em>",
+    lede: "Two otherwise identical homes on the same street rarely produce the same rental revenue. The gap between them is execution — how the home is photographed, how it is written, how it is ranked on the platforms guests search, and how it is prepared between stays. That work is our work.",
+    body: `
+      <p>The features outside the door do the work of bringing guests to Park City. The four pillars below do the work of making sure those guests book <strong>this home</strong> &mdash; and come back.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <h4>Story</h4>
+          <p>Photography and listing presentation that shows the home the way the guest will remember it. Not a catalog. A reason to book.</p>
+        </div>
+        <div class="pillar">
+          <h4>Placement</h4>
+          <p>Seasonal listing descriptions rewritten for the guest arriving that month. A December listing does not sell the way a July listing does.</p>
+        </div>
+        <div class="pillar">
+          <h4>Position</h4>
+          <p>Review velocity and platform ranking strategy. The difference between page one and page three is revenue, not luck.</p>
+        </div>
+        <div class="pillar">
+          <h4>Presentation</h4>
+          <p>In-house cleaning and turnover protocols that hold the five-star review standard on every stay, not just the first ones.</p>
+        </div>
+      </div>
+
+      <div class="pullquote"><p>The rental position at 226 Norfolk is already strong. The Longitude work is what turns that position into a multi-year booking calendar.</p></div>
+
+      <h3>The owner's <em>bottom line.</em></h3>
+      <p>An owner comes to Longitude for one reason: to hand a high-value asset to a team that treats it with the same care the owner would, and to have that team turn a licensed home into a consistently top-performing listing. We keep the home feeling untouched between stays. We keep the calendar working. We keep you informed without asking you to manage anything yourself. That is the ownership experience we deliver &mdash; and the one this address deserves.</p>
+    `
+  },
+
+  olympics: {
+    eyebrow: "vi. — 2034 Olympics & The Window Ahead",
+    title: "The calendar is printed. <em>The window is open.</em>",
+    lede: "Money is moving from supply-constrained luxury ski markets into Park City. The 2034 Olympics are fixed on the calendar. The owner who establishes a rental track record today is the owner who holds the premium when the Games arrive.",
+    body: `
+      <h3>Where the money is <em>coming from.</em></h3>
+
+      <p><strong>Aspen</strong>'s median single-family home price reached $13.4M in Q4 2024 with the market capped at eight demolition permits per year <em>(comparable market)</em>. <strong>Jackson Hole</strong>'s average single-family price reached $7.4M in 2024 against approximately 200 total vacant lots <em>(comparable market)</em>. <strong>Telluride</strong> posted 261% appreciation between 2013 and 2023 with a median sold price of $6.295M <em>(comparable market)</em>. <strong>Vail</strong> represents roughly four months of inventory supply against a balanced six-month benchmark <em>(comparable market)</em>.</p>
+
+      <p>Buyers priced out of those markets are conducting rental-testing campaigns across Big Sky, Jackson Hole, and Utah before committing. Park City is on that short list, and the data show it is winning.</p>
+
+      <div class="stat-block">
+        <div class="stat">
+          <span class="num">$56B</span>
+          <span class="label">International buyer purchases of US residential real estate, 2024&ndash;25 &mdash; up 33.2% year over year</span>
+        </div>
+        <div class="stat">
+          <span class="num">$3.95M</span>
+          <span class="label">Median single-family price in Park City proper &mdash; receiving-market pricing</span>
+        </div>
+        <div class="stat">
+          <span class="num">2034</span>
+          <span class="label">Park City Mountain hosts halfpipe, slopestyle, and freestyle skiing</span>
+        </div>
+      </div>
+
+      <h3>What the Olympic window <em>does.</em></h3>
+
+      <div class="comp-callout">
+        <h4>Comparable Market &mdash; Whistler, pre-2010 Games</h4>
+        <p>Whistler property values appreciated approximately <strong>140% in the seven-year window before the 2010 Winter Olympics</strong> <em>(REPORTED &mdash; comparable market, property value)</em>.</p>
+        <h4 style="margin-top:22px">Same Market &mdash; Park City 2002</h4>
+        <p>The 2002 Salt Lake Games produced <strong>43% skier-visit growth, 70% hotel revenue growth, and 66% visitor spending increase</strong> for the Park City market itself <em>(CONFIRMED &mdash; same market, historical)</em>.</p>
+      </div>
+
+      <p>The 2034 Games are the first Winter Olympics of the streaming and social-media era. The global audience is larger. The pre-Games rental window is longer. The venues that get the broadcast &mdash; Park City Mountain among them &mdash; are the venues whose homes carry the premium through 2034 and beyond.</p>
+
+      <h3>Why today <em>matters more than 2033.</em></h3>
+
+      <p>A rental track record cannot be built retroactively. The reviews, the repeat guests, the platform ranking, the operational reputation &mdash; all of it takes years to establish, and all of it is priced into the listing that shows up in the Games window. The home that starts booking with a professional operator this season is the home booking at peak rates in 2033. The home that waits is the home starting from scratch when demand is loudest.</p>
+
+      <div class="pullquote"><p>The calendar is printed. The window is open. The inventory is finite. The owner who moves first is the owner who compounds.</p></div>
+    `
+  }
+};
+
+const backdrop = document.getElementById('modal-backdrop');
+const modal = document.getElementById('modal');
+const cards = document.querySelectorAll('.nav-card');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const key = card.getAttribute('data-target');
+    openModal(key);
+  });
+});
+
+function openModal(key) {
+  const c = content[key];
+  if (!c) return;
+  modal.innerHTML = `
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div class="modal-header">
+      <span class="eyebrow">${c.eyebrow}</span>
+      <h2>${c.title}</h2>
+      <p class="lede">${c.lede}</p>
+    </div>
+    <div class="modal-body">${c.body}</div>
+  `;
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modal.scrollTop = 0;
+  backdrop.scrollTop = 0;
+}
+
+function closeModal() {
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+backdrop.addEventListener('click', (e) => {
+  if (e.target === backdrop) closeModal();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+
+</body>
+</html>
